@@ -30,7 +30,7 @@ describe('Aeroport', () => {
         expect(Aeroport.aeroports.length).toBe(2)
     })
 
-    test('an Aeroport has planes', () => {
+    test.skip('an Aeroport has planes', () => {
         const plane1 = new Plane()
         const [LHR, LAX] = Aeroport.aeroports
         LHR.addPlane(plane1)
@@ -39,5 +39,11 @@ describe('Aeroport', () => {
         LHR.takeOff(plane1)
         expect(LHR.planes.length).toBe(0)
         expect(LAX.planes.length).toBe(1)
+    })
+
+    test('have extra data we can get', async function () {
+        const LHR = new Aeroport('LHR')
+        const info = await LHR.getInfo()
+        expect(info.city).toBe('London')
     })
 })
